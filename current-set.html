@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Most Current Set — Pokémon Card Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="page-header">
+    <a href="index.html" class="back-link">&larr; Home</a>
+    <h1 id="set-title">Most Current Set</h1>
+  </header>
+
+  <div id="grid" class="card-grid">
+    <p class="loading-message">Loading...</p>
+  </div>
+
+  <script src="js/collection.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/grid.js"></script>
+  <script>
+    (async function () {
+      try {
+        const manifest = await loadManifest();
+        const latest = mostRecentSet(manifest);
+        document.getElementById("set-title").textContent = latest ? latest.set_name : "Most Current Set";
+        const entries = latest ? await loadSet(latest.set_id) : [];
+        renderGrid(document.getElementById("grid"), entries);
+      } catch (err) {
+        document.getElementById("grid").innerHTML =
+          `<p class="empty-message">Couldn't load card data: ${err.message}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

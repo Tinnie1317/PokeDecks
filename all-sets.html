@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Sets — Pokémon Card Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="page-header">
+    <a href="index.html" class="back-link">&larr; Home</a>
+    <h1>All Sets</h1>
+  </header>
+
+  <div id="sets-container">
+    <p class="loading-message">Loading...</p>
+  </div>
+
+  <script src="js/collection.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/grid.js"></script>
+  <script>
+    (async function () {
+      const container = document.getElementById("sets-container");
+      try {
+        const manifest = await loadManifest();
+        container.innerHTML = "";
+
+        // Newest sets first
+        const ordered = [...manifest].sort((a, b) =>
+          (b.release_date || "").localeCompare(a.release_date || "")
+        );
+
+        for (const s of ordered) {
+          const section = document.createElement("section");
+          section.className = "set-section";
+          section.innerHTML = `<h2>${s.set_name}</h2><div class="card-grid" id="grid-${s.set_id}"></div>`;
+          container.appendChild(section);
+
+          const entries = await loadSet(s.set_id);
+          renderGrid(document.getElementById(`grid-${s.set_id}`), entries);
+        }
+      } catch (err) {
+        container.innerHTML = `<p class="empty-message">Couldn't load card data: ${err.message}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

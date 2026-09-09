@@ -1,0 +1,67 @@
+[
+  {
+    "id": "base1-4-holofoil",
+    "card_id": "base1-4",
+    "name": "Charizard",
+    "number": "4",
+    "set_id": "base1",
+    "set_name": "Base",
+    "rarity": "Rare Holo",
+    "special_variant": "Standard",
+    "print_variant": "Holofoil",
+    "image_small": "https://images.pokemontcg.io/base1/4.png",
+    "image_large": "https://images.pokemontcg.io/base1/4_hires.png"
+  },
+  {
+    "id": "base1-1-holofoil",
+    "card_id": "base1-1",
+    "name": "Alakazam",
+    "number": "1",
+    "set_id": "base1",
+    "set_name": "Base",
+    "rarity": "Rare Holo",
+    "special_variant": "Standard",
+    "print_variant": "Holofoil",
+    "image_small": "https://images.pokemontcg.io/base1/1.png",
+    "image_large": "https://images.pokemontcg.io/base1/1_hires.png"
+  },
+  {
+    "id": "base1-9-holofoil",
+    "card_id": "base1-9",
+    "name": "Blastoise",
+    "number": "9",
+    "set_id": "base1",
+    "set_name": "Base",
+    "rarity": "Rare Holo",
+    "special_variant": "Standard",
+    "print_variant": "Holofoil",
+    "image_small": "https://images.pokemontcg.io/base1/9.png",
+    "image_large": "https://images.pokemontcg.io/base1/9_hires.png"
+  },
+  {
+    "id": "base1-15-holofoil",
+    "card_id": "base1-15",
+    "name": "Venusaur",
+    "number": "15",
+    "set_id": "base1",
+    "set_name": "Base",
+    "rarity": "Rare Holo",
+    "special_variant": "Standard",
+    "print_variant": "Holofoil",
+    "image_small": "https://images.pokemontcg.io/base1/15.png",
+    "image_large": "https://images.pokemontcg.io/base1/15_hires.png"
+  },
+  {
+    "id": "base1-58-normal",
+    "card_id": "base1-58",
+    "name": "Pikachu",
+    "number": "58",
+    "set_id": "base1",
+    "set_name": "Base",
+    "rarity": "Common",
+    "special_variant": "Standard",
+    "print_variant": "Normal",
+    "image_small": "https://images.pokemontcg.io/base1/58.png",
+    "image_large": "https://images.pokemontcg.io/base1/58_hires.png"
+  }
+]
