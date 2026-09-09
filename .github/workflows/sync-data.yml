@@ -1,0 +1,50 @@
+name: Sync card data
+
+# Keeps docs/data up to date automatically, so you never have to run
+# sync_data.py by hand. Runs:
+#   - once a week (catches new sets as they release)
+#   - any time you push a change to the sync script itself
+#   - on demand, via the "Run workflow" button on the Actions tab
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # every Monday at 06:00 UTC
+  workflow_dispatch: {}
+  push:
+    paths:
+      - "scripts/sync_data.py"
+      - "scripts/requirements.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run sync script
+        run: python scripts/sync_data.py
+        # Optional: register a free API key at https://dev.pokemontcg.io
+        # and add it as a repo secret named POKEMONTCG_API_KEY, then
+        # uncomment the two lines below to raise the rate limit.
+        # env:
+        #   POKEMONTCG_API_KEY: ${{ secrets.POKEMONTCG_API_KEY }}
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet || git commit -m "Auto-update card data"
+          git push
